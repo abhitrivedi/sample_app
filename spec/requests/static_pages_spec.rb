@@ -6,9 +6,13 @@ describe "StaticPages" do
       visit '/static_pages/home'
       page.should have_selector('h1', :text => 'Sample App')
     end
-    it "should have the content 'Sample App'" do
+    it "should have the base title" do
       visit '/static_pages/home'
-      page.should have_selector('title', :text => "Ruby on Rails Sample App | Home")
+      page.should have_selector('title', :text => "Ruby on Rails Sample App")
+    end
+    it "should have the custom title" do
+      visit '/static_pages/home'
+      page.should_not have_selector('title', :text => "| Home")
     end
   end
   describe "Help page" do
